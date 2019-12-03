@@ -22,30 +22,32 @@
           @after-enter="afterTransitionEnter"
           @after-leave="afterTransitionLeave"
         >
-          <span
-            ref="topTabTrap"
-            tabindex="0"
-          />
-          <div
-            v-if="visibility.modal"
-            ref="modal"
-            :class="modalClass"
-            :style="modalStyle"
-          >
-            <slot/>
-            <resizer
-              v-if="resizable && !isAutoHeight"
-              :min-width="minWidth"
-              :min-height="minHeight"
-              :max-width="maxWidth"
-              :max-height="maxHeight"
-              @resize="handleModalResize"
+          <div>
+            <span
+              ref="topTabTrap"
+              tabindex="0"
+            />
+            <div
+              v-if="visibility.modal"
+              ref="modal"
+              :class="modalClass"
+              :style="modalStyle"
+            >
+              <slot/>
+              <resizer
+                v-if="resizable && !isAutoHeight"
+                :min-width="minWidth"
+                :min-height="minHeight"
+                :max-width="maxWidth"
+                :max-height="maxHeight"
+                @resize="handleModalResize"
+              />
+            </div>
+            <span
+              ref="bottomTabTrap"
+              tabindex="0"
             />
           </div>
-          <span
-            ref="bottomTabTrap"
-            tabindex="0"
-          />
         </transition>
       </div>
     </div>
