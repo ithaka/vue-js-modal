@@ -22,16 +22,16 @@
           @after-enter="afterTransitionEnter"
           @after-leave="afterTransitionLeave"
         >
+          <span
+            ref="topTabTrap"
+            tabindex="0"
+          />
           <div
             v-if="visibility.modal"
             ref="modal"
             :class="modalClass"
             :style="modalStyle"
           >
-            <span
-              ref="topTabTrap"
-              tabindex="0"
-            />
             <slot/>
             <resizer
               v-if="resizable && !isAutoHeight"
@@ -41,11 +41,11 @@
               :max-height="maxHeight"
               @resize="handleModalResize"
             />
-            <span
-              ref="bottomTabTrap"
-              tabindex="0"
-            />
           </div>
+          <span
+            ref="bottomTabTrap"
+            tabindex="0"
+          />
         </transition>
       </div>
     </div>
@@ -564,7 +564,8 @@ export default {
     },
 
     trapFocusListener(event) {
-      let modalContent = this.$refs.modalContent;
+      debugger;
+      let modalContent = this.$refs.modal;
       let activeElement = event.target;
       if (modalContent && !modalContent.contains(activeElement)) {
         const focusableElements = this.getFocusableModalElements();
@@ -579,7 +580,7 @@ export default {
       }
     },
     getFocusableModalElements() {
-      let modalContent = this.$refs.modalContent;
+      let modalContent = this.$refs.modal;
       return modalContent ? modalContent.querySelectorAll(FOCUSABLE_SELECTOR) : [];
     },
     focusElementByIndex (focusableElements, index) {
