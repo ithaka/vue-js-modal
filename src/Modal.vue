@@ -549,14 +549,15 @@ export default {
     callAfterEvent (state) {
       if (state) {
         this.connectObserver();
-        let focusableElements = this.getFocusableModalElements();
-        this.focusElementByIndex(focusableElements, 0);
+        let focusableElements = this.getFocusableModalElements()
+        this.focusElementByIndex(focusableElements, 0)
 
         document.addEventListener("focusin", this.trapFocusListener);
-        document.removeEventListener("focusin", this.trapFocusListener);
       } else {
         this.disconnectObserver();
-        this.returnFocusElement.focus();
+
+        document.removeEventListener("focusin", this.trapFocusListener)
+        this.returnFocusElement.focus()
       }
       const eventName = state ? 'opened' : 'closed'
       const event = this.createModalEvent({ state })
@@ -565,17 +566,17 @@ export default {
 
     trapFocusListener(event) {
       debugger;
-      let modalContent = this.$refs.modal;
-      let activeElement = event.target;
+      let modalContent = this.$refs.modal
+      let activeElement = event.target
       if (modalContent && !modalContent.contains(activeElement)) {
-        const focusableElements = this.getFocusableModalElements();
-        let topTabTrap = this.$refs.topTabTrap;
-        let bottomTabTrap = this.$refs.bottomTabTrap;
+        const focusableElements = this.getFocusableModalElements()
+        let topTabTrap = this.$refs.topTabTrap
+        let bottomTabTrap = this.$refs.bottomTabTrap
 
         if (topTabTrap && activeElement === topTabTrap) {
-          this.focusElementByIndex(focusableElements, focusableElements.length - 1);
+          this.focusElementByIndex(focusableElements, focusableElements.length - 1)
         } else if (bottomTabTrap && activeElement === bottomTabTrap) {
-          this.focusElementByIndex(focusableElements, 0);
+          this.focusElementByIndex(focusableElements, 0)
         }
       }
     },
