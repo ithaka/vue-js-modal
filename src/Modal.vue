@@ -590,6 +590,7 @@ export default {
         focusableElements[index].focus();
       }
     },
+    
     addDraggableListeners () {
       if (!this.draggable) {
         return
