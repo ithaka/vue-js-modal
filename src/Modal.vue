@@ -586,6 +586,7 @@ export default {
       let modalContent = this.$refs.modal;
       return modalContent ? modalContent.querySelectorAll(FOCUSABLE_SELECTOR) : [];
     },
+    
     focusElementByIndex (focusableElements, index) {
       if (focusableElements.length > 0 && index < focusableElements.length) {
         focusableElements[index].focus();
