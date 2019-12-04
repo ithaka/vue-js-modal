@@ -12,7 +12,6 @@
         @mousedown.self="handleBackgroundClick"
         @touchstart.self="handleBackgroundClick"
       >
-
         <div class="v--modal-top-right">
           <slot name="top-right"/>
         </div>
