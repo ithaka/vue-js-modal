@@ -581,6 +581,7 @@ export default {
         }
       }
     },
+    
     getFocusableModalElements() {
       let modalContent = this.$refs.modal;
       return modalContent ? modalContent.querySelectorAll(FOCUSABLE_SELECTOR) : [];
